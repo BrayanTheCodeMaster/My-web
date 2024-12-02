@@ -15,4 +15,9 @@ app.post('/signup', (req, res) => {
     // Add user to the "database"
     users.push({ first_name, last_name, username, email, password });
     res.status(200).json({ message: 'User signed up successfully!' });
+    } catch (error) {
+         console.error('Error in/signup route:', error);
+res.status(500).json({ message:'Internal Server Error' });
+}
+});
 });
