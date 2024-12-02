@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Chat Room with Private Messaging</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <script src="script.js" defer></script> <!-- Link to your JS file -->
+</head>
+<body>
+    <!-- Sign-Up/Sign-In Modal -->
+    <div class="modal" id="authModal">
+        <div class="modal-content">
+            <h3>Sign Up / Login</h3>
+            <div id="authChoice">
+                <button onclick="showSignUpForm()">Sign Up</button>
+                <button onclick="showSignInForm()">Sign In</button>
+            </div>
+            <div id="authForm" style="display:none;">
+                <input type="text" id="authUsername" placeholder="Username" style="margin-bottom: 10px; width: 100%;" />
+                <input type="password" id="authPassword" placeholder="Password" style="margin-bottom: 10px; width: 100%;" />
+                <button onclick="authenticateUser()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="member-list">
+            <h3>Members</h3>
+            <div id="memberList"></div>
+        </div>
+        <div class="chat-section">
+            <h2 style="text-align: center; padding: 10px; background-color: #3498db; color: white;">Enhanced Chat Room</h2>
+            <div id="chatContainer"></div>
+            <div class="send-container">
+                <input type="text" id="messageInput" placeholder="Type a message">
+                <input type="file" id="fileInput" accept="image/,video/,.pdf,.doc,.docx" onchange="handleFile()" style="display: none;">
+                <button onclick="document.getElementById('fileInput').click()">📎</button>
+                <button onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
