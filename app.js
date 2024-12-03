@@ -1,4 +1,4 @@
-document.getElementById('signup-form').addEventListener('submit', async function(e) {
+document.getElementById('signup-form').addEventListener('submit', async function (e) {
     e.preventDefault();
 
     // Collect form data
@@ -13,7 +13,7 @@ document.getElementById('signup-form').addEventListener('submit', async function
 
     // Ensure passwords match
     if (formData.password !== formData.confirm_password) {
-        alert("Passwords do not match!");
+        alert('Passwords do not match!');
         return;
     }
 
@@ -25,16 +25,18 @@ document.getElementById('signup-form').addEventListener('submit', async function
             body: JSON.stringify(formData),
         });
 
-        const result = await response.json();
-
-        if (response.ok) {
-            alert(result.message);
-            // Redirect or show confirmation prompt here
-        } else {
-            alert(result.message || 'An error occurred.');
+        // Check if response is OK
+        if (!response.ok) {
+            const errorData = await response.json();
+            alert(errorData.message || 'An error occurred during sign up.');
+            return;
         }
+
+        const result = await response.json();
+        alert(result.message);
+        window.location.href = '/login'; // Redirect to login page
     } catch (error) {
         console.error('Error:', error);
-        alert('Unable to sign up. Please try again later.');
+        alert('Unable to sign up. Please check the server connection.');
     }
 });
